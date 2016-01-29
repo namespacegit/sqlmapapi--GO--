@@ -4,16 +4,16 @@ package main
 
 import (
 	"fmt"
-	"time"
-	//"os"
+	"os"
 	"scantask/Sqli"
+	"time"
 
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
 const (
-	Host     = "127.0.0.1"
+	//Host     = "127.0.0.1"
 	Port     = "27017"
 	User     = ""
 	Password = ""
@@ -21,6 +21,7 @@ const (
 )
 
 func dbsetup(collection string) *mgo.Collection {
+	Host := os.Getenv("MONGO_PORT_27017_TCP_ADDR")
 	URL := Host + ":" + Port
 	session, err := mgo.Dial(URL) //连接服务器
 	if err != nil {
